@@ -1,9 +1,12 @@
 <app-header></app-header>
 
 <div
-  class="xl:container xl:mx-auto bg-purple-100 grid sm:grid-cols-2 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-purple-900 gap-4"
+  class="xl:container xl:mx-auto flex-auto bg-slate-700 grid md:grid-cols-2 divide-y-2 md:divide-y-0 sm:divide-x-2 divide-purple-400 gap-4"
 >
-  <div class="cols-span-1 py-12 px-8 flex flex-col">
+  <div
+    style="height: calc(100vh - 3.5rem)"
+    class="cols-span-1 py-12 px-8 flex flex-col"
+  >
     <app-cocktail-list></app-cocktail-list>
   </div>
   <div class="cols-span-1 py-12 px-8 flex flex-col">
