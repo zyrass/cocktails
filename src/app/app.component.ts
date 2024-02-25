@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
+import { Cocktail } from './interfaces/cocktail.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'cocktails';
-}
+export class AppComponent {}
