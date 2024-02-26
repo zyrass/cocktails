@@ -4,7 +4,6 @@ import { Cocktail } from '../interfaces/cocktail.interface';
 @Component({
   selector: 'app-cocktail-details',
   templateUrl: './cocktail-details.component.html',
-  styles: ``,
 })
 export class CocktailDetailsComponent {
   cocktail: Cocktail = {
