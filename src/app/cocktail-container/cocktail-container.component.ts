@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cocktail } from '../interfaces/cocktail.interface';
 
 @Component({
-  selector: 'app-cocktail-list',
-  templateUrl: './cocktail-list.component.html',
+  selector: 'app-cocktail-container',
+  templateUrl: './cocktail-container.component.html',
 })
-export class CocktailListComponent {
-  cocktails: Cocktail[] = [
+export class CocktailContainerComponent implements OnInit {
+  public selectedCocktail!: Cocktail;
+  public cocktails: Cocktail[] = [
     {
       _id: crypto.randomUUID(),
       name: 'Cocktail Gin Tonic',
@@ -29,4 +30,12 @@ export class CocktailListComponent {
         'Le Pussyfoot : un cocktail classique en hommage à un militant du sans-alcool.',
     },
   ];
+
+  public checkMyCocktail(indice: number) {
+    this.selectedCocktail = this.cocktails[indice];
+  }
+
+  ngOnInit(): void {
+    this.selectedCocktail = this.cocktails[0];
+  }
 }
