@@ -1,8 +1,8 @@
-import { UUID } from 'crypto';
+import { Ingredient } from './ingredient.interface';
 
 export interface Cocktail {
-  _id?: UUID;
   name: string;
   img: string;
   description: string;
+  ingredients?: Ingredient[];
 }

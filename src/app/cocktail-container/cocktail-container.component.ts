@@ -1,41 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Cocktail } from '../interfaces/cocktail.interface';
+import { Cocktail } from './../../shared/interfaces/cocktail.interface';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CocktailService } from '../../shared/services/cocktail.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cocktail-container',
   templateUrl: './cocktail-container.component.html',
 })
-export class CocktailContainerComponent implements OnInit {
+export class CocktailContainerComponent implements OnInit, OnDestroy {
+  public cocktails: Cocktail[] = [];
   public selectedCocktail!: Cocktail;
-  public cocktails: Cocktail[] = [
-    {
-      _id: crypto.randomUUID(),
-      name: 'Cocktail Gin Tonic',
-      img: 'https://www.cocktailmag.fr/media/k2/items/cache/4d8c9898b5bb88437f053c8b957f47f3_M.jpg',
-      description:
-        'Gin Tonic : un cocktail autrefois utilisé pour combattre le scorbut et la malaria !',
-    },
-    {
-      _id: crypto.randomUUID(),
-      name: 'Cocktail Paradise',
-      img: 'https://www.cocktailmag.fr/media/k2/items/cache/d48ed900e79fa9547169c26138b4cd8d_M.jpg',
-      description:
-        'Le cocktail Paradise : un short drink fruité à siroter idéalement en apéritif.',
-    },
-    {
-      _id: crypto.randomUUID(),
-      name: 'Cocktail Pussyfoot',
-      img: 'https://www.cocktailmag.fr/media/k2/items/cache/938a195f8810cb9b31c6503221891897_M.jpg',
-      description:
-        'Le Pussyfoot : un cocktail classique en hommage à un militant du sans-alcool.',
-    },
-  ];
+  public subscription: Subscription = new Subscription();
 
-  public checkMyCocktail(indice: number) {
-    this.selectedCocktail = this.cocktails[indice];
-  }
+  constructor(private cocktailService: CocktailService) {}
 
   ngOnInit(): void {
-    this.selectedCocktail = this.cocktails[0];
+    this.subscription.add(
+      this.cocktailService.cocktails$.subscribe((cocktails: Cocktail[]) => {
+        this.cocktails = cocktails;
+      })
+    );
+
+    this.subscription.add(
+      this.cocktailService.selectedCocktail$.subscribe(
+        (selectedCocktail: Cocktail) => {
+          this.selectedCocktail = selectedCocktail;
+        }
+      )
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public checkMyCocktail(indice: number) {
+    this.cocktailService.checkMyCocktail(indice);
   }
 }
