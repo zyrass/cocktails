@@ -14,6 +14,7 @@ import { SelectedDirective } from '../shared/directives/selected.directive';
 import { CocktailEditComponent } from './cocktail-container/cocktail-edit/cocktail-edit.component';
 import { PanierContainerComponent } from './panier-container/panier-container.component';
 import { IngredientListComponent } from './panier-container/ingredient-list/ingredient-list.component';
+import { CocktailFormComponent } from './cocktail-container/cocktail-form/cocktail-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { IngredientListComponent } from './panier-container/ingredient-list/ingr
     CocktailEditComponent,
     PanierContainerComponent,
     IngredientListComponent,
+    CocktailFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideClientHydration()],
