@@ -20,4 +20,13 @@
     font-weight: 900;
     font-style: normal;
   }
+
+  .activeNav {
+    background-color: rgb(147 51 234 / var(--tw-bg-opacity)) !important;
+  }
+
+  .active {
+    background-color: rgb(192 132 252 / var(--tw-bg-opacity)) !important;
+    color: rgb(241 245 249 / var(--tw-text-opacity)) !important;
+  }
 }

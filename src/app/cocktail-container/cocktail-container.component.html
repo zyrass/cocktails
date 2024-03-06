@@ -5,13 +5,10 @@
     style="height: calc(100vh - 3.5rem)"
     class="cols-span-1 py-12 px-8 flex flex-col"
   >
-    <app-cocktail-list
-      (cocktailSelectionner)="checkMyCocktail($event)"
-      [cocktails]="cocktails"
-      [selectedCocktail]="selectedCocktail"
-    ></app-cocktail-list>
+    <app-cocktail-list [cocktails]="cocktails"></app-cocktail-list>
   </div>
   <div class="cols-span-1 py-12 px-8 flex flex-col">
-    <app-cocktail-details [cocktail]="selectedCocktail"></app-cocktail-details>
+    <!-- <app-cocktail-details [cocktail]="selectedCocktail"></app-cocktail-details> -->
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Cocktail } from '../../../shared/interfaces/cocktail.interface';
 
 @Component({
@@ -7,11 +7,4 @@ import { Cocktail } from '../../../shared/interfaces/cocktail.interface';
 })
 export class CocktailListComponent {
   @Input() public cocktails?: Cocktail[];
-  @Input() public selectedCocktail!: Cocktail;
-  @Output() private cocktailSelectionner: EventEmitter<number> =
-    new EventEmitter();
-
-  public cocktailSelected(index: number): void {
-    this.cocktailSelectionner.emit(index);
-  }
 }

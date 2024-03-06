@@ -8,8 +8,8 @@
       let first = first;
       let last = last
     "
-    (click)="cocktailSelected(i)"
-    [appSelected]="cocktail.name == selectedCocktail.name"
+    [routerLink]="[i]"
+    routerLinkActive="active"
   >
     {{ cocktail.name }}
   </li>
