@@ -15,6 +15,7 @@ import { CocktailEditComponent } from './cocktail-container/cocktail-edit/cockta
 import { PanierContainerComponent } from './panier-container/panier-container.component';
 import { IngredientListComponent } from './panier-container/ingredient-list/ingredient-list.component';
 import { CocktailFormComponent } from './cocktail-container/cocktail-form/cocktail-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { CocktailFormComponent } from './cocktail-container/cocktail-form/cockta
     IngredientListComponent,
     CocktailFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
