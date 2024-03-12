@@ -74,4 +74,9 @@ export class CocktailService {
   public getCocktail(index: number) {
     return this.cocktails$.value[index];
   }
+
+  public addCocktail(cocktail: Cocktail): void {
+    const value = this.cocktails$.value;
+    this.cocktails$.next([...value, cocktail]);
+  }
 }
