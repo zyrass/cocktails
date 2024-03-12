@@ -76,7 +76,21 @@ export class CocktailService {
   }
 
   public addCocktail(cocktail: Cocktail): void {
-    const value = this.cocktails$.value;
-    this.cocktails$.next([...value, cocktail]);
+    const values = this.cocktails$.value;
+    this.cocktails$.next([...values, cocktail]);
+  }
+
+  public editCocktail(cocktail: Cocktail): void {
+    const values = this.cocktails$.value;
+    this.cocktails$.next(
+      values.map((currentCocktail: Cocktail) => {
+        console.log(currentCocktail);
+        if (currentCocktail.name === cocktail.name) {
+          return cocktail;
+        } else {
+          return currentCocktail;
+        }
+      })
+    );
   }
 }
