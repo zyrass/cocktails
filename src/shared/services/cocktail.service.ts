@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Cocktail } from '../interfaces/cocktail.interface';
 import { BehaviorSubject } from 'rxjs';
+import { EIngredient } from '../interfaces/EIngredient.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CocktailService {
-  constructor() {}
-
-  public cocktails$: BehaviorSubject<Cocktail[]> = new BehaviorSubject([
+  private cocktailData: Cocktail[] = [
     {
       name: 'Cocktail Gin Tonic',
       img: 'https://www.cocktailmag.fr/media/k2/items/cache/4d8c9898b5bb88437f053c8b957f47f3_M.jpg',
@@ -18,10 +17,12 @@ export class CocktailService {
         {
           name: 'gin',
           quantity: 5,
+          mesure: EIngredient.CL,
         },
         {
           name: 'schweppes',
           quantity: 10,
+          mesure: EIngredient.CL,
         },
       ],
     },
@@ -34,14 +35,17 @@ export class CocktailService {
         {
           name: 'gin',
           quantity: 4,
+          mesure: EIngredient.CL,
         },
         {
           name: "liqueur d'abricot",
           quantity: 2,
+          mesure: EIngredient.CL,
         },
         {
           name: "jus d'orange",
           quantity: 1,
+          mesure: EIngredient.CL,
         },
       ],
     },
@@ -54,29 +58,53 @@ export class CocktailService {
         {
           name: "jus d'orange",
           quantity: 10,
+          mesure: EIngredient.CL,
         },
         {
           name: 'jus de citron pressé',
           quantity: 3,
+          mesure: EIngredient.CL,
         },
         {
           name: "jaune d'oeuf",
           quantity: 1,
+          mesure: EIngredient.QT,
         },
         {
           name: 'sirop de grenadine',
           quantity: 1.5,
+          mesure: EIngredient.CL,
         },
       ],
     },
-  ]);
+  ];
+
+  constructor() {}
+
+  public cocktails$: BehaviorSubject<Cocktail[]> = new BehaviorSubject(
+    this.cocktailData
+  );
 
   public getCocktail(index: number) {
     return this.cocktails$.value[index];
   }
 
   public addCocktail(cocktail: Cocktail): void {
-    const value = this.cocktails$.value;
-    this.cocktails$.next([...value, cocktail]);
+    const values = this.cocktails$.value;
+    this.cocktails$.next([...values, cocktail]);
+  }
+
+  public editCocktail(cocktail: Cocktail): void {
+    const values = this.cocktails$.value;
+    this.cocktails$.next(
+      values.map((currentCocktail: Cocktail) => {
+        console.log(currentCocktail);
+        if (currentCocktail.name === cocktail.name) {
+          return cocktail;
+        } else {
+          return currentCocktail;
+        }
+      })
+    );
   }
 }

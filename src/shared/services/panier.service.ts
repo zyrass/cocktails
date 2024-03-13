@@ -7,6 +7,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Ingredient } from '../interfaces/ingredient.interface';
+import { EIngredient } from '../interfaces/EIngredient.enum';
 
 /**
  * Service gérant le panier d'ingrédients.
@@ -70,7 +71,11 @@ export class PanierService {
       const result = Object.keys(obj).map((key) => ({
         name: key,
         quantity: obj[key],
+        mesure: key as EIngredient,
       }));
+
+      console.log(result);
+
       this.ingredients$.next(result);
     } else {
       // Si le panier est vide, ajoute simplement les nouveaux ingrédients.
