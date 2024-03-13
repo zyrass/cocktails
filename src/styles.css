@@ -20,4 +20,21 @@
     font-weight: 900;
     font-style: normal;
   }
+
+  .activeNav {
+    background-color: rgb(147 51 234 / var(--tw-bg-opacity)) !important;
+  }
+
+  .active {
+    background-color: rgb(192 132 252 / var(--tw-bg-opacity)) !important;
+    color: rgb(241 245 249 / var(--tw-text-opacity)) !important;
+  }
+
+  .ng-untouched {
+    border: 2px solid rgb(248 250 252 / var(--tw-border-opacity)) !important;
+  }
+
+  .ng-invalid.ng-touched {
+    border-color: rgb(239 68 68 / var(--tw-bg-opacity)) !important;
+  }
 }

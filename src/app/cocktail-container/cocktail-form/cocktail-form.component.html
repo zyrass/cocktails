@@ -1,0 +1,110 @@
+<h3 class="text-3xl text-white text-center">Formulaire à venir</h3>
+
+<form [formGroup]="cocktailForm" (ngSubmit)="submitForm()" class="my-4">
+  <!-- Nouveau cocktail -->
+  <section class="bg-slate-50 py-8">
+    <!-- Nom -->
+    <div class="px-8 mb-2 flex flex-col">
+      <label class="mb-2 font-bold">Nom: </label>
+      <input
+        type="text"
+        placeholder="le nom du cocktail"
+        class="py-2 px-4 bg-slate-100 border"
+        formControlName="name"
+      />
+    </div>
+
+    <!-- L'image -->
+    <div class="bg-slate-50 px-8 mb-2 flex flex-col">
+      <label class="mb-2 font-bold">Image: </label>
+      <input
+        type="text"
+        placeholder="L'URL de l'image représentant le cocktail"
+        class="py-2 px-4 bg-slate-100 border"
+        formControlName="img"
+      />
+    </div>
+
+    <!-- La description -->
+    <div class="bg-slate-50 px-8 mb-2 flex flex-col">
+      <label class="mb-2 font-bold">description: </label>
+      <textarea
+        type="text"
+        placeholder="la description du cocktail"
+        class="py-2 px-4 bg-slate-100 border resize-none"
+        formControlName="description"
+        rows="2"
+      ></textarea>
+    </div>
+  </section>
+
+  <!-- Bouton Ajouter un ingredient -->
+  <div class="flex justify-center my-4">
+    <button
+      class="btn py-2 px-4 uppercase font-bold rounded bg-purple-400 text-slate-100 hover:bg-purple-600 cursor-pointer"
+      (click)="addIngredient()"
+      type="button"
+    >
+      Ajouter un ingrédient
+    </button>
+  </div>
+
+  <!-- Ingrédients -->
+  <section class="bg-slate-50 py-8" formArrayName="ingredients">
+    <div
+      [formGroupName]="index"
+      *ngFor="let ingredient of ingredients.controls; let index = index"
+    >
+      <!-- Nom -->
+      <div class="px-8 mb-2 flex flex-col">
+        <label class="mb-2 font-bold"
+          >Nom de l'ingrédient n° {{ index + 1 }} :
+        </label>
+        <input
+          type="text"
+          placeholder="le nom de l'ingrédient"
+          class="py-2 px-4 bg-slate-100"
+          formControlName="name"
+        />
+      </div>
+
+      <!-- Quantité -->
+      <div class="px-8 mb-2 flex flex-col">
+        <label class="mb-2 font-bold">Quantité : </label>
+        <input
+          type="number"
+          placeholder="la quantitée"
+          class="py-2 px-4 bg-slate-100"
+          formControlName="quantity"
+        />
+      </div>
+
+      <!-- Type -->
+      <div class="px-8 mb-2 flex flex-col">
+        <label class="mb-2 font-bold">Type de Quantité : </label>
+        <select class="py-2 px-4 bg-slate-100" formControlName="mesure">
+          <option value="cl">cl (centilitre)</option>
+          <option value="ml">ml (mililitre)</option>
+          <option value="g">g (gramme)</option>
+          <option value="qt">qt (quantité)</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <div class="flex justify-between mt-8">
+    <button
+      class="btn py-2 px-4 uppercase font-bold rounded bg-purple-400 text-slate-100 hover:bg-purple-600 cursor-pointer"
+      [disabled]="cocktailForm.invalid"
+    >
+      Valider
+    </button>
+
+    <button
+      class="btn py-2 px-4 uppercase font-bold rounded bg-purple-950 text-slate-100 hover:bg-purple-600 cursor-pointer"
+      routerLink=".."
+    >
+      Annuler
+    </button>
+  </div>
+</form>
