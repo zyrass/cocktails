@@ -63,7 +63,7 @@
         <input
           type="text"
           placeholder="le nom de l'ingrédient"
-          class="py-2 px-4 bg-slate-100 border"
+          class="py-2 px-4 bg-slate-100"
           formControlName="name"
         />
       </div>
@@ -74,9 +74,20 @@
         <input
           type="number"
           placeholder="la quantitée"
-          class="py-2 px-4 bg-slate-100 border"
+          class="py-2 px-4 bg-slate-100"
           formControlName="quantity"
         />
+      </div>
+
+      <!-- Type -->
+      <div class="px-8 mb-2 flex flex-col">
+        <label class="mb-2 font-bold">Type de Quantité : </label>
+        <select class="py-2 px-4 bg-slate-100" formControlName="mesure">
+          <option value="cl">cl (centilitre)</option>
+          <option value="ml">ml (mililitre)</option>
+          <option value="g">g (gramme)</option>
+          <option value="qt">qt (quantité)</option>
+        </select>
       </div>
     </div>
   </section>
@@ -86,7 +97,7 @@
       class="btn py-2 px-4 uppercase font-bold rounded bg-purple-400 text-slate-100 hover:bg-purple-600 cursor-pointer"
       [disabled]="cocktailForm.invalid"
     >
-      Valider le nouveau cocktail
+      Valider
     </button>
 
     <button

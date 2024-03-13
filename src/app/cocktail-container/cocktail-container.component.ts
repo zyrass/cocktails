@@ -24,8 +24,4 @@ export class CocktailContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  // public getCocktail(indice: number) {
-  //   this.cocktailService.getCocktail(indice);
-  // }
 }

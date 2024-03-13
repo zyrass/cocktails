@@ -26,6 +26,12 @@ export class CocktailFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(
+      this.cocktailForm.statusChanges.subscribe((value) => {
+        console.log(value);
+      })
+    );
+
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const index = paramMap.get('index');
       if (index !== null) {
@@ -36,7 +42,12 @@ export class CocktailFormComponent implements OnInit {
   }
 
   private initForm(
-    cocktail: Cocktail = { name: '', img: '', description: '', ingredients: [] }
+    cocktail: Cocktail = {
+      name: '',
+      img: '',
+      description: '',
+      ingredients: [],
+    }
   ): FormGroup {
     return this.formBuilder.group({
       name: [cocktail.name, Validators.required],
@@ -44,7 +55,7 @@ export class CocktailFormComponent implements OnInit {
       description: [cocktail.description, Validators.required],
       ingredients: this.formBuilder.array(
         cocktail.ingredients.map((currentIngredient: Ingredient) => {
-          this.formBuilder.group({
+          return this.formBuilder.group({
             name: [currentIngredient.name, Validators.required],
             quantity: [currentIngredient.quantity, Validators.required],
             mesure: [currentIngredient.mesure, Validators.required],
@@ -60,6 +71,7 @@ export class CocktailFormComponent implements OnInit {
       this.formBuilder.group({
         name: ['', Validators.required],
         quantity: [0, Validators.required],
+        mesure: ['', Validators.pattern('^(cl|ml|g|qt)1$')],
       })
     );
   }
