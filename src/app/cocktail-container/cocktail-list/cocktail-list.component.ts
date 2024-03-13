@@ -7,4 +7,5 @@ import { Cocktail } from '../../../shared/interfaces/cocktail.interface';
 })
 export class CocktailListComponent {
   @Input() public cocktails: Cocktail[] | null = null;
+  public search = '';
 }

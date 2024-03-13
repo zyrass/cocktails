@@ -1,6 +1,11 @@
-<h3 class="text-3xl text-white text-center">Formulaire à venir</h3>
+<h3 class="text-3xl text-white text-center">Formulaire</h3>
 
-<form [formGroup]="cocktailForm" (ngSubmit)="submitForm()" class="my-4">
+<form
+  *ngIf="cocktailForm"
+  [formGroup]="cocktailForm"
+  (ngSubmit)="submitForm()"
+  class="my-4"
+>
   <!-- Nouveau cocktail -->
   <section class="bg-slate-50 py-8">
     <!-- Nom -->

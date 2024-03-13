@@ -1,16 +1,17 @@
+import { Cocktail } from './../../../shared/interfaces/cocktail.interface';
 import { Ingredient } from './../../../shared/interfaces/ingredient.interface';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CocktailService } from '../../../shared/services/cocktail.service';
-import { Cocktail } from '../../../shared/interfaces/cocktail.interface';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-cocktail-form',
   templateUrl: './cocktail-form.component.html',
 })
 export class CocktailFormComponent implements OnInit {
-  public cocktail?: Cocktail;
+  public cocktail!: Cocktail | null;
   public cocktailForm: FormGroup = this.initForm();
 
   // GETTER permettant d'accéder au FormArray contenant les FormControl des ingrédients
@@ -34,9 +35,16 @@ export class CocktailFormComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       const index = paramMap.get('index');
-      if (index !== null) {
-        this.cocktail = this.cocktailService.getCocktail(+index);
-        this.cocktailForm = this.initForm(this.cocktail);
+      if (this.cocktail && index !== null) {
+        this.cocktailService
+          .getCocktail(+index)
+          .pipe(first((x) => !!x))
+          .subscribe((cocktail: Cocktail) => {
+            this.cocktail = cocktail;
+            this.cocktailForm = this.initForm(this.cocktail!);
+          });
+      } else {
+        this.cocktailForm = this.initForm();
       }
     });
   }
@@ -78,9 +86,11 @@ export class CocktailFormComponent implements OnInit {
 
   public submitForm(): void {
     if (this.cocktail) {
-      this.cocktailService.editCocktail(this.cocktailForm.value);
+      this.cocktailService
+        .editCocktail(this.cocktail._id, this.cocktailForm.value)
+        .subscribe();
     } else {
-      this.cocktailService.addCocktail(this.cocktailForm.value);
+      this.cocktailService.addCocktail(this.cocktailForm.value).subscribe();
     }
     this.router.navigate(['..'], { relativeTo: this.activatedRoute });
   }

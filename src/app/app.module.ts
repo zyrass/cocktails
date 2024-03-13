@@ -14,7 +14,9 @@ import { SelectedDirective } from '../shared/directives/selected.directive';
 import { PanierContainerComponent } from './panier-container/panier-container.component';
 import { IngredientListComponent } from './panier-container/ingredient-list/ingredient-list.component';
 import { CocktailFormComponent } from './cocktail-container/cocktail-form/cocktail-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from '../shared/pipes/filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     PanierContainerComponent,
     IngredientListComponent,
     CocktailFormComponent,
+    FilterPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
