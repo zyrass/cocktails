@@ -81,9 +81,9 @@ export class CocktailService {
 
   constructor() {}
 
-  public cocktails$: BehaviorSubject<Cocktail[]> = new BehaviorSubject(
-    this.cocktailData
-  );
+  public cocktails$: BehaviorSubject<Cocktail[]> = new BehaviorSubject<
+    Cocktail[]
+  >(this.cocktailData);
 
   public getCocktail(index: number) {
     return this.cocktails$.value[index];

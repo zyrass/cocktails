@@ -6,5 +6,5 @@ import { Cocktail } from '../../../shared/interfaces/cocktail.interface';
   templateUrl: './cocktail-list.component.html',
 })
 export class CocktailListComponent {
-  @Input() public cocktails?: Cocktail[];
+  @Input() public cocktails: Cocktail[] | null = null;
 }

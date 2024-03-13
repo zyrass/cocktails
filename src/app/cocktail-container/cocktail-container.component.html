@@ -5,7 +5,7 @@
     style="height: calc(100vh - 3.5rem)"
     class="cols-span-1 py-12 px-8 flex flex-col"
   >
-    <app-cocktail-list [cocktails]="cocktails"></app-cocktail-list>
+    <app-cocktail-list [cocktails]="cocktail$ | async"></app-cocktail-list>
   </div>
   <div class="cols-span-1 py-12 px-8 flex flex-col">
     <!-- <app-cocktail-details [cocktail]="selectedCocktail"></app-cocktail-details> -->
