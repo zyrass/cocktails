@@ -1,7 +1,7 @@
-import { Ingredient } from './../../shared/interfaces/ingredient.interface';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PanierService } from '../../shared/services/panier.service';
+import { Ingredient } from '../../../shared/interfaces/ingredient.interface';
+import { PanierService } from '../../../shared/services/panier.service';
 
 @Component({
   selector: 'app-panier-container',

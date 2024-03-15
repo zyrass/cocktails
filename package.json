@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "watch2": "ng build --watch --configuration staging",
     "test": "ng test",
     "serve:ssr:cocktails": "node dist/cocktails/server/server.mjs"
   },
